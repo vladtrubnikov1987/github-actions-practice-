@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+env:
+  PROJECT_NAME: github-actions-practice
 jobs:
   hello:
     runs-on: ubuntu-latest
@@ -16,5 +17,5 @@ jobs:
       - name: Show repository files
         run: ls -la
 
-      - name: Print message
-        run: echo "Hello from GitHub Actions"
+      - name: Print project name
+        run: echo "Project is $PROJECT_NAME"
