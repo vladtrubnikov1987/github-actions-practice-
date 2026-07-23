@@ -7,7 +7,15 @@ on:
 env:
   PROJECT_NAME: github-actions-practice
 jobs:
-  hello:
+  pre-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare
+        run: echo "Preparation completed"
+
+  build:
+    needs: pre-job
     runs-on: ubuntu-latest
 
     steps:
