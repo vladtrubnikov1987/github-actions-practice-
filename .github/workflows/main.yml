@@ -6,19 +6,32 @@ on:
       - main
 env:
   PROJECT_NAME: github-actions-practice
-jobs:
-  pre-job:
+pre-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare
-        run: echo "Preparation completed"
+      - name: Create report file
+        run: echo "Preparation completed" > report.txt
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preparation-report
+          path: report.txt
 
   build:
     needs: pre-job
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: preparation-report
+
+      - name: Read report
+        run: cat report.txt
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
