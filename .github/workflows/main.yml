@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+
 env:
   PROJECT_NAME: github-actions-practice
-pre-job:
+
+jobs:
+  pre-job:
     runs-on: ubuntu-latest
 
     steps:
